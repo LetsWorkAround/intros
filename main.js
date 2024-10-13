@@ -82,11 +82,11 @@ const KeywordAnalysisDashboard = (function() {
         //     }
         // }, 1500);
 
-                currentSnapshot = generateMockData(keywords);
-                saveSnapshot(currentSnapshot);
-                displayResults(currentSnapshot);
-                DOM.loadingIndicator.style.display = 'none';
-                DOM.resultsContainer.style.display = 'block';
+        currentSnapshot = generateMockData(keywords);
+        saveSnapshot(currentSnapshot);
+        displayResults(currentSnapshot);
+        DOM.loadingIndicator.style.display = 'none';
+        DOM.resultsContainer.style.display = 'block';
     }
 
     // 목업 데이터 생성
