@@ -90,6 +90,11 @@
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 14px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .tag:hover {
+            background-color: #e09400;
         }
         .loading {
             display: none;
@@ -130,7 +135,7 @@
 
         <div id="results" style="display: none;">
             <div class="card">
-                <h2><i class="fas fa-tags"></i> 연관 키워드</h2>
+                <h2><i class="fas fa-tags"></i> 연관 키워드 (20개)</h2>
                 <ul id="relatedKeywordList" class="tag-list"></ul>
             </div>
             
@@ -154,8 +159,13 @@
 
             // 분석 시뮬레이션 (실제로는 서버 요청을 할 것입니다)
             setTimeout(() => {
-                // 연관 키워드 생성 (더미 데이터)
-                const relatedKeywords = ['온라인마케팅', '검색엔진최적화', '키워드광고', '콘텐츠마케팅', '소셜미디어마케팅'];
+                // 연관 키워드 생성 (더미 데이터 - 20개)
+                const relatedKeywords = [
+                    '온라인마케팅', '검색엔진최적화', '키워드광고', '콘텐츠마케팅', '소셜미디어마케팅',
+                    '이메일마케팅', '퍼포먼스마케팅', '인플루언서마케팅', '브랜드마케팅', '제품마케팅',
+                    '디지털광고', '리타게팅', '바이럴마케팅', '네이티브광고', '프로그래매틱광고',
+                    '모바일마케팅', '전환율최적화', '고객생애가치', '마케팅자동화', '데이터기반마케팅'
+                ];
                 const relatedKeywordList = document.getElementById('relatedKeywordList');
                 relatedKeywordList.innerHTML = '';
                 relatedKeywords.forEach(keyword => {
