@@ -68,19 +68,25 @@ const KeywordAnalysisDashboard = (function() {
         DOM.resultsContainer.style.display = 'none';
 
         // 분석 시뮬레이션 (실제로는 서버 요청을 할 것입니다)
-        setTimeout(() => {
-            try {
+        // setTimeout(() => {
+        //     try {
+        //         currentSnapshot = generateMockData(keywords);
+        //         saveSnapshot(currentSnapshot);
+        //         displayResults(currentSnapshot);
+        //         DOM.loadingIndicator.style.display = 'none';
+        //         DOM.resultsContainer.style.display = 'block';
+        //     } catch (error) {
+        //         console.error("분석 중 오류 발생:", error);
+        //         alert("분석 중 오류가 발생했습니다. 다시 시도해주세요.");
+        //         DOM.loadingIndicator.style.display = 'none';
+        //     }
+        // }, 1500);
+
                 currentSnapshot = generateMockData(keywords);
                 saveSnapshot(currentSnapshot);
                 displayResults(currentSnapshot);
                 DOM.loadingIndicator.style.display = 'none';
                 DOM.resultsContainer.style.display = 'block';
-            } catch (error) {
-                console.error("분석 중 오류 발생:", error);
-                alert("분석 중 오류가 발생했습니다. 다시 시도해주세요.");
-                DOM.loadingIndicator.style.display = 'none';
-            }
-        }, 1500);
     }
 
     // 목업 데이터 생성
