@@ -5,118 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>키워드 분석 대시보드 - 스냅샷 기능</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #f5a623;
-            --background-color: #f8f9fa;
-            --text-color: #333;
-            --border-color: #e0e0e0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .input-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        input, select {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #3a7bc8;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f1f3f5;
-            font-weight: bold;
-        }
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style-type: none;
-            padding: 0;
-        }
-        .tag {
-            background-color: var(--secondary-color);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 10px;
-            transition: background-color 0.3s;
-        }
-        .tag:hover {
-            background-color: #e09400;
-        }
-        .loading {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-        .loading i {
-            font-size: 24px;
-            color: var(--primary-color);
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        #snapshotSelect {
-            margin-bottom: 20px;
-        }
-    </style>
+    <link href="main.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <h1>키워드 분석 대시보드</h1>
+            <div class="user-info">
+                <span id="loginStatus">로그인되지 않음</span>
+                <span id="nickname"></span>
+                <span id="searchCount"></span>
+                <button id="loginButton" onclick="toggleLogin()">로그인</button>
+            </div>
+        </div>
+    </header>
+    
     <div class="container">
         <h1><i class="fas fa-chart-line"></i> 키워드 분석 대시보드</h1>
         
@@ -161,126 +64,6 @@
         </div>
     </div>
 
-    <script>
-        let currentSnapshot = null;
-
-        function analyzeKeywords() {
-            // 로딩 표시
-            document.querySelector('.loading').style.display = 'flex';
-            document.getElementById('results').style.display = 'none';
-
-            // 분석 시뮬레이션 (실제로는 서버 요청을 할 것입니다)
-            setTimeout(() => {
-                // 스냅샷 생성
-                currentSnapshot = {
-                    timestamp: new Date().toISOString(),
-                    relatedKeywords: [
-                        '온라인마케팅', '검색엔진최적화', '키워드광고', '콘텐츠마케팅', '소셜미디어마케팅',
-                        '이메일마케팅', '퍼포먼스마케팅', '인플루언서마케팅', '브랜드마케팅', '제품마케팅',
-                        '디지털광고', '리타게팅', '바이럴마케팅', '네이티브광고', '프로그래매틱광고',
-                        '모바일마케팅', '전환율최적화', '고객생애가치', '마케팅자동화', '데이터기반마케팅'
-                    ],
-                    competitors: [
-                        { url: 'example1.com', impressions: 10000, clicks: 500, cost: 1000000 },
-                        { url: 'example2.com', impressions: 8000, clicks: 400, cost: 800000 },
-                        { url: 'example3.com', impressions: 12000, clicks: 600, cost: 1200000 },
-                        { url: 'example4.com', impressions: 9000, clicks: 450, cost: 900000 },
-                        { url: 'example5.com', impressions: 11000, clicks: 550, cost: 1100000 }
-                    ],
-                    keywordAnalysis: [
-                        { keyword: '디지털마케팅', pcRank: 3, mobileRank: 2, bidPrice: 5000, impressions: 20000, clicks: 1000, cost: 2000000, cpc: 2000 },
-                        { keyword: '온라인광고', pcRank: 5, mobileRank: 4, bidPrice: 4500, impressions: 18000, clicks: 900, cost: 1800000, cpc: 2000 },
-                        { keyword: 'SEO', pcRank: 2, mobileRank: 1, bidPrice: 6000, impressions: 25000, clicks: 1250, cost: 2500000, cpc: 2000 },
-                        { keyword: '소셜미디어', pcRank: 4, mobileRank: 3, bidPrice: 5500, impressions: 22000, clicks: 1100, cost: 2200000, cpc: 2000 },
-                        { keyword: '콘텐츠제작', pcRank: 6, mobileRank: 5, bidPrice: 4000, impressions: 16000, clicks: 800, cost: 1600000, cpc: 2000 }
-                    ]
-                };
-
-                // 스냅샷 저장
-                saveSnapshot(currentSnapshot);
-
-                // 결과 표시
-                displayResults(currentSnapshot);
-
-                // 로딩 숨기기 및 결과 표시
-                document.querySelector('.loading').style.display = 'none';
-                document.getElementById('results').style.display = 'block';
-            }, 1500); // 1.5초 후 결과 표시 (실제 구현에서는 실제 API 응답 시간에 따라 다름)
-        }
-
-        function displayResults(snapshot) {
-            // 연관 키워드 표시
-            const relatedKeywordList = document.getElementById('relatedKeywordList');
-            relatedKeywordList.innerHTML = '';
-            snapshot.relatedKeywords.forEach(keyword => {
-                const li = document.createElement('li');
-                li.textContent = keyword;
-                li.classList.add('tag');
-                relatedKeywordList.appendChild(li);
-            });
-
-            // 경쟁사 분석 표시
-            const competitorTable = document.getElementById('competitorTable');
-            competitorTable.innerHTML = '<tr><th>URL</th><th>월 예상 노출수</th><th>예상 월 클릭수</th><th>예상 월 비용</th></tr>';
-            snapshot.competitors.forEach(competitor => {
-                const row = competitorTable.insertRow();
-                row.insertCell(0).textContent = competitor.url;
-                row.insertCell(1).textContent = competitor.impressions.toLocaleString();
-                row.insertCell(2).textContent = competitor.clicks.toLocaleString();
-                row.insertCell(3).textContent = competitor.cost.toLocaleString() + '원';
-            });
-
-            // 키워드 상세 분석 표시
-            const keywordAnalysisTable = document.getElementById('keywordAnalysisTable');
-            keywordAnalysisTable.innerHTML = '<tr><th>키워드</th><th>PC 노출 순위</th><th>모바일 노출 순위</th><th>예상 입찰가</th><th>예상 월 노출수</th><th>예상 월 클릭수</th><th>예상 월 비용</th><th>예상 CPC</th></tr>';
-            snapshot.keywordAnalysis.forEach(analysis => {
-                const row = keywordAnalysisTable.insertRow();
-                row.insertCell(0).textContent = analysis.keyword;
-                row.insertCell(1).textContent = analysis.pcRank;
-                row.insertCell(2).textContent = analysis.mobileRank;
-                row.insertCell(3).textContent = analysis.bidPrice.toLocaleString() + '원';
-                row.insertCell(4).textContent = analysis.impressions.toLocaleString();
-                row.insertCell(5).textContent = analysis.clicks.toLocaleString();
-                row.insertCell(6).textContent = analysis.cost.toLocaleString() + '원';
-                row.insertCell(7).textContent = analysis.cpc.toLocaleString() + '원';
-            });
-        }
-
-        function saveSnapshot(snapshot) {
-            let snapshots = JSON.parse(localStorage.getItem('snapshots') || '[]');
-            snapshots.push(snapshot);
-            localStorage.setItem('snapshots', JSON.stringify(snapshots));
-            updateSnapshotSelect();
-        }
-
-        function updateSnapshotSelect() {
-            const select = document.getElementById('snapshotSelect');
-            select.innerHTML = '<option value="">현재 분석 결과</option>';
-            let snapshots = JSON.parse(localStorage.getItem('snapshots') || '[]');
-            snapshots.forEach((snapshot, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = new Date(snapshot.timestamp).toLocaleString();
-                select.appendChild(option);
-            });
-        }
-
-        function loadSnapshot() {
-            const select = document.getElementById('snapshotSelect');
-            const selectedIndex = select.value;
-            if (selectedIndex === '') {
-                if (currentSnapshot) {
-                    displayResults(currentSnapshot);
-                }
-            } else {
-                let snapshots = JSON.parse(localStorage.getItem('snapshots') || '[]');
-                const selectedSnapshot = snapshots[selectedIndex];
-                displayResults(selectedSnapshot);
-            }
-        }
-
-        // 페이지 로드 시 스냅샷 선택 옵션 업데이트
-        updateSnapshotSelect();
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
