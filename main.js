@@ -45,20 +45,20 @@ const KeywordAnalysisDashboard = (function() {
 
     // 키워드 분석 실행
     function analyzeKeywords() {
-        if (!isLoggedIn) {
-            alert("로그인이 필요합니다.");
-            return;
-        }
-        if (remainingSearches <= 0) {
-            alert("검색 횟수를 모두 사용하셨습니다.");
-            return;
-        }
+        // if (!isLoggedIn) {
+        //     alert("로그인이 필요합니다.");
+        //     return;
+        // }
+        // if (remainingSearches <= 0) {
+        //     alert("검색 횟수를 모두 사용하셨습니다.");
+        //     return;
+        // }
 
-        const keywords = DOM.keywordInputs.map(input => input.value.trim()).filter(Boolean);
-        if (keywords.length === 0) {
-            alert("최소 하나의 키워드를 입력해주세요.");
-            return;
-        }
+        // const keywords = DOM.keywordInputs.map(input => input.value.trim()).filter(Boolean);
+        // if (keywords.length === 0) {
+        //     alert("최소 하나의 키워드를 입력해주세요.");
+        //     return;
+        // }
 
         remainingSearches--;
         updateHeaderInfo();
